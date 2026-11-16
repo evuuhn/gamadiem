@@ -1,0 +1,383 @@
+.recommendation-content {
+  max-width: none;
+  padding: 17px 38px 48px 32px;
+}
+
+.recommendation-heading h1 {
+  margin: 0;
+  color: #401414;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.recommendation-heading p {
+  margin: 2px 0 0 2px;
+  color: #401414;
+  font-size: 17px;
+  line-height: 1.35;
+}
+
+.recommendation-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-chip,
+.price-filter select {
+  height: 38px;
+  padding: 0 16px;
+  color: #401414;
+  background: #ffe8e8;
+  border: 0;
+  border-radius: 18px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+
+.filter-chip:hover,
+.price-filter select:hover {
+  background: #ffc9c9;
+  box-shadow: 0 2px 0 rgba(64, 20, 20, .2);
+}
+
+.filter-chip.active {
+  color: #ffe8e8;
+  background: #d90a0a;
+}
+
+.filter-chip:focus-visible,
+.price-filter select:focus-visible,
+.food-card:focus-visible,
+.open-map-link:focus-visible {
+  outline: 3px solid #401414;
+  outline-offset: 3px;
+}
+
+.price-filter {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.price-filter select {
+  min-width: 140px;
+  padding: 0 34px 0 20px;
+  appearance: none;
+}
+
+.price-filter-arrow {
+  position: absolute;
+  right: 14px;
+  top: 4px;
+  color: #401414;
+  font-size: 22px;
+  pointer-events: none;
+}
+
+.recommendation-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 575px) minmax(320px, 1fr);
+  align-items: start;
+  gap: 32px;
+  margin-top: 22px;
+}
+
+.food-list {
+  display: grid;
+  max-height: 552px;
+  gap: 12px;
+  overflow-y: auto;
+  padding: 0 9px 5px 0;
+  margin-right: -19px;
+  scrollbar-color: #d90a0a #ffe8e8;
+  scrollbar-width: thin;
+}
+
+.food-card {
+  position: relative;
+  min-height: 126px;
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr);
+  align-items: center;
+  gap: 0;
+  padding: 12px 110px 12px 18px;
+  overflow: hidden;
+  color: #401414;
+  background: #ffe8e8;
+  border-radius: 14px;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, .14);
+  cursor: pointer;
+  text-align: left;
+  transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+
+.food-card:hover,
+.food-card.selected {
+  background: #fff0ef;
+  box-shadow: 0 4px 0 rgba(64, 20, 20, .2);
+  transform: translateY(-1px);
+}
+
+.food-emoji {
+  align-self: start;
+  margin-top: 20px;
+  color: #d90a0a;
+  font-size: 34px;
+  line-height: 1;
+}
+
+.food-copy {
+  min-width: 0;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.food-copy h3 {
+  margin: 0;
+  overflow: hidden;
+  color: #401414;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.food-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 4px 0 0;
+  font-size: 15px;
+  line-height: 1.15;
+}
+
+.food-meta .rating { color: #a45b00; }
+
+.food-price {
+  margin: 6px 0 0;
+  color: #d90a0a;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.food-description {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.food-distance {
+  position: absolute;
+  top: 13px;
+  right: 12px;
+  z-index: 1;
+  color: #0d8c38;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.food-heart {
+  position: absolute;
+  z-index: 2;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.food-sticker {
+  position: absolute;
+  right: -2px;
+  bottom: -7px;
+  width: 91px;
+  height: 67px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.food-card:nth-child(2) .food-sticker {
+  right: 5px;
+  bottom: -2px;
+  width: 64px;
+  height: 62px;
+}
+
+.food-card:nth-child(3) .food-sticker {
+  right: 5px;
+  bottom: -4px;
+  width: 52px;
+  height: 64px;
+}
+
+.food-card.selected::after {
+  position: absolute;
+  right: 42px;
+  bottom: 11px;
+  color: #d90a0a;
+  content: "VIEWING MAP";
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.no-recommendations {
+  min-height: 126px;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  color: #401414;
+  background: #ffe8e8;
+  border-radius: 14px;
+  font-size: 17px;
+  text-align: center;
+}
+
+.map-panel {
+  min-width: 0;
+  padding-top: 50px;
+  text-align: center;
+}
+
+.map-panel h2 {
+  margin: 0 0 12px;
+  color: #401414;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.map-panel iframe {
+  width: 100%;
+  height: 430px;
+  display: block;
+  background: #ffe8e8;
+  border: 3px solid #401414;
+  border-radius: 12px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, .18);
+}
+
+.map-campus {
+  margin: 12px 0 10px;
+  color: #d90a0a;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.open-map-link {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 18px;
+  color: #ffe8e8;
+  background: #d90a0a;
+  border-radius: 12px;
+  box-shadow: 0 3px 0 rgba(64, 20, 20, .28);
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color .15s ease, transform .15s ease;
+}
+
+.open-map-link:hover {
+  background: #b80707;
+  transform: translateY(-1px);
+}
+
+.map-hint {
+  margin: 10px 0 0;
+  color: #401414;
+  font-size: 14px;
+}
+
+.recommendation-note {
+  margin: 10px 0 0;
+  color: rgba(64, 20, 20, .8);
+  font-size: 13px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 1100px) {
+  .recommendation-content { padding-right: 28px; padding-left: 28px; }
+  .recommendation-layout { grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr); gap: 22px; }
+  .food-list { margin-right: -12px; }
+  .map-panel { padding-top: 28px; }
+  .food-card { padding-right: 96px; }
+  .food-copy h3 { font-size: 19px; }
+  .food-distance { right: 9px; font-size: 12px; }
+  .food-sticker { width: 78px; }
+}
+
+@media (max-width: 900px) {
+  .recommendation-layout { grid-template-columns: minmax(0, 1fr); }
+  .food-list { max-height: 552px; margin-right: 0; }
+  .map-panel { width: min(100%, 620px); padding-top: 0; }
+  .map-panel iframe { height: 380px; }
+  .recommendation-note { margin-top: 16px; }
+}
+
+@media (max-width: 620px) {
+  .recommendation-content { padding: 16px 18px 35px; }
+  .recommendation-heading h1 { font-size: 31px; }
+  .recommendation-heading p { margin: 5px 0 0; font-size: 15px; }
+  .recommendation-filters { align-items: flex-start; margin-top: 20px; }
+  .category-filters { gap: 7px; }
+  .filter-chip,
+  .price-filter select { height: 36px; padding-right: 13px; padding-left: 13px; font-size: 14px; }
+  .price-filter select { min-width: 132px; padding-right: 31px; }
+  .price-filter-arrow { top: 3px; right: 11px; }
+  .recommendation-layout { gap: 28px; margin-top: 18px; }
+  .food-list { max-height: 540px; padding-right: 3px; }
+  .food-card { min-height: 126px; grid-template-columns: 43px minmax(0, 1fr); padding: 11px 78px 11px 13px; }
+  .food-emoji { font-size: 28px; }
+  .food-copy h3 { font-size: 18px; }
+  .food-meta { font-size: 13px; }
+  .food-price { font-size: 16px; }
+  .food-description { font-size: 12px; }
+  .food-distance { top: 39px; right: 8px; max-width: 74px; font-size: 10px; white-space: normal; text-align: right; }
+  .food-heart { top: 6px; right: 7px; width: 24px; height: 24px; }
+  .food-sticker { width: 66px; height: 55px; }
+  .food-card:nth-child(2) .food-sticker { width: 52px; height: 52px; }
+  .food-card:nth-child(3) .food-sticker { width: 44px; height: 54px; }
+  .map-panel h2 { font-size: 18px; }
+  .map-panel iframe { height: 320px; }
+  .map-campus { font-size: 17px; }
+  .map-hint { font-size: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filter-chip,
+  .price-filter select,
+  .food-card,
+  .open-map-link { transition: none; }
+}

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#d90a0a">
+    <title>Gamadiem — Financial Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Gamadiem home">
+        <span class="brand-icon">
+          <img src="assets/gamadiem-logo.svg" alt="">
+        </span>
+        <span class="brand-name">Gamadiem</span>
+      </a>
+
+      <nav class="navigation" aria-label="Main navigation">
+        <a class="nav-item active" href="dashboard.html" aria-current="page">
+          <img src="assets/sidebar-dashboard.png" alt="">
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-item" href="history.html">
+          <img src="assets/sidebar-history.png" alt="">
+          <span>History</span>
+        </a>
+        <a class="nav-item recommendation" href="recommendation.html">
+          <img src="assets/sidebar-food.png" alt="">
+          <span>Food Recommendation</span>
+        </a>
+        <a class="nav-item" href="settings.html">
+          <img src="assets/sidebar-settings.png" alt="">
+          <span>Settings</span>
+        </a>
+        <a class="nav-item" href="#" id="logoutLink">
+          <img src="assets/sidebar-logout.png" alt="">
+          <span>Logout</span>
+        </a>
+      </nav>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <label class="search" for="searchInput">
+          <img src="assets/search-icon.png" alt="">
+          <input id="searchInput" type="search" placeholder="Search for anything..." aria-label="Search">
+        </label>
+        <div class="topbar-user" aria-label="Signed-in user">
+          <span class="topbar-avatar" data-user-initial aria-hidden="true"></span>
+          <span class="topbar-user-name" data-user-name></span>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="page-heading">
+          <h1>Financial Dashboard</h1>
+          <time class="date" id="date" datetime="">Nov 15, 2026</time>
+        </section>
+
+        <section class="cards" aria-label="Balance summary">
+          <article class="card spendable">
+            <h2>Spendable Balance</h2>
+            <span class="money-icon" aria-hidden="true">$$$</span>
+            <p class="amount" id="spendableBalance">Rp 0</p>
+            <img class="sunglasses pixel-art" src="assets/sunglasses.svg" alt="">
+          </article>
+
+          <article class="card piggy">
+            <h2>Virtual Piggy Bank</h2>
+            <p class="amount" id="virtualPiggyBank">Rp 0</p>
+            <img class="piggy-sticker pixel-art" src="assets/piggy-bank.png" alt="">
+          </article>
+
+          <article class="card safe">
+            <h2>Safe-to-Spend Today</h2>
+            <p class="amount" id="safeToSpendToday">Rp 0</p>
+            <img class="alert-sticker pixel-art" src="assets/safe-warning.png" alt="">
+          </article>
+        </section>
+
+        <section class="lower" aria-label="Purchase planner and wishlist">
+          <form class="buy-form" id="buyForm">
+            <h2>What do you want to buy?</h2>
+            <img class="notepad-sticker pixel-art" src="assets/notepad.png" alt="">
+
+            <div class="field">
+              <label for="itemName">Item name:</label>
+              <input type="text" id="itemName" placeholder="e.g., Mie Ayam" required>
+            </div>
+            <div class="field">
+              <label for="price">Price:</label>
+              <input type="text" id="price" inputmode="numeric" pattern="[0-9.]*" placeholder="e.g., Rp. 15.000" autocomplete="off" required>
+            </div>
+            <fieldset class="category-field">
+              <legend>Category:</legend>
+              <div class="categories">
+                <button type="button" class="cat active" aria-pressed="true">Food</button>
+                <button type="button" class="cat" aria-pressed="false">Transport</button>
+                <button type="button" class="cat" aria-pressed="false">Groceries</button>
+                <button type="button" class="cat" aria-pressed="false">Social</button>
+              </div>
+            </fieldset>
+            <div class="field notes-field">
+              <label for="notes">Notes:</label>
+              <input type="text" id="notes" placeholder="Write your notes here...">
+            </div>
+            <button type="submit" class="submit">Add to purchase history</button>
+          </form>
+
+          <aside class="wishlist">
+            <img class="star-sticker pixel-art" src="assets/wishlist-star.png" alt="">
+            <h2>Wishlist</h2>
+            <img class="necklace-sticker pixel-art" src="assets/necklace.svg" alt="">
+            <h3>Add wishlist</h3>
+            <form class="wishlist-form" id="wishlistForm">
+              <label class="visually-hidden" for="wishlistItemName">Wishlist item name</label>
+              <input id="wishlistItemName" type="text" placeholder="e.g., Laptop" maxlength="80" required>
+              <label class="wishlist-price-label" for="wishlistPrice">Price:</label>
+              <input id="wishlistPrice" type="text" inputmode="numeric" pattern="[0-9.]*" placeholder="e.g., 250.000" autocomplete="off" required>
+              <button type="submit" class="wishlist-submit">Add</button>
+            </form>
+            <div class="wishlist-divider" aria-hidden="true"></div>
+            <ul id="wishlist" aria-label="Wishlist items"></ul>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+    <div class="logout-modal hidden" id="logoutModal" aria-hidden="true">
+      <section class="logout-dialog" role="dialog" aria-modal="true" aria-labelledby="logoutTitle" aria-describedby="logoutMessage">
+        <h2 id="logoutTitle">Log Out</h2>
+        <p id="logoutMessage">Are you sure you want to log out?</p>
+        <div class="logout-actions">
+          <button type="button" class="logout-confirm" id="confirmLogout">I'm Sure</button>
+          <button type="button" class="logout-cancel" id="cancelLogout">Cancel</button>
+        </div>
+      </section>
+    </div>
+    <script src="js/finance.js"></script>
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>

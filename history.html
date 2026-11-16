@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#d90a0a">
+    <title>Purchase History — Gamadiem</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/history.css">
+  </head>
+  <body class="history-page">
+    <aside class="sidebar">
+      <a class="brand" href="dashboard.html" aria-label="Gamadiem home">
+        <span class="brand-icon">
+          <img src="assets/gamadiem-logo.svg" alt="">
+        </span>
+        <span class="brand-name">Gamadiem</span>
+      </a>
+
+      <nav class="navigation" aria-label="Main navigation">
+        <a class="nav-item" href="dashboard.html">
+          <img src="assets/sidebar-dashboard.png" alt="">
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-item active" href="history.html" aria-current="page">
+          <img src="assets/sidebar-history.png" alt="">
+          <span>History</span>
+        </a>
+        <a class="nav-item recommendation" href="recommendation.html">
+          <img src="assets/sidebar-food.png" alt="">
+          <span>Food Recommendation</span>
+        </a>
+        <a class="nav-item" href="settings.html">
+          <img src="assets/sidebar-settings.png" alt="">
+          <span>Settings</span>
+        </a>
+        <a class="nav-item" href="#" id="logoutLink">
+          <img src="assets/sidebar-logout.png" alt="">
+          <span>Logout</span>
+        </a>
+      </nav>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <label class="search" for="searchInput">
+          <img src="assets/search-icon.png" alt="">
+          <input id="searchInput" type="search" placeholder="Search for anything..." aria-label="Search">
+        </label>
+        <div class="topbar-user" aria-label="Signed-in user">
+          <span class="topbar-avatar" data-user-initial aria-hidden="true"></span>
+          <span class="topbar-user-name" data-user-name></span>
+        </div>
+      </header>
+
+      <main class="content history-content">
+        <section class="history-heading" aria-labelledby="historyTitle">
+          <h1 id="historyTitle">Purchase History!</h1>
+          <img class="history-sparkle pixel-art" src="assets/history-sparkle.png" alt="" aria-hidden="true">
+          <p>Track your spending around Universitas Gadjah Mada</p>
+        </section>
+
+        <section class="history-stats" aria-label="Purchase statistics">
+          <article class="history-stat">
+            <h2>Total Purchase</h2>
+            <p id="historyTotal">Rp 0</p>
+            <small>All recorded purchases</small>
+          </article>
+          <article class="history-stat">
+            <h2>Transactions</h2>
+            <p id="historyCount">0</p>
+            <small id="historyCountDetail">Across 0 categories</small>
+          </article>
+          <article class="history-stat">
+            <h2>Average Order</h2>
+            <p id="historyAverage">Rp 0</p>
+            <small>Per purchase</small>
+          </article>
+        </section>
+
+        <div class="history-filters" id="historyFilters" role="group" aria-label="Filter by category">
+          <button type="button" class="history-filter active" data-category="All" aria-pressed="true">All</button>
+          <button type="button" class="history-filter" data-category="Food" aria-pressed="false">Food</button>
+          <button type="button" class="history-filter" data-category="Transport" aria-pressed="false">Transport</button>
+          <button type="button" class="history-filter" data-category="Groceries" aria-pressed="false">Groceries</button>
+          <button type="button" class="history-filter" data-category="Social" aria-pressed="false">Social</button>
+        </div>
+
+        <section class="history-layout" aria-label="Transactions and spending details">
+          <div class="history-list-column">
+            <p class="history-visually-hidden" id="visibleCount" aria-live="polite">0 transactions</p>
+            <div id="transactions" class="transactions" aria-live="polite"></div>
+          </div>
+
+          <aside class="history-aside">
+            <article class="history-panel spending-panel">
+              <h2>Spending Summary</h2>
+              <p class="spending-total" id="spendingTotal">Rp 0</p>
+              <p class="spending-period" id="spendingPeriod"></p>
+              <p class="spending-trend" id="spendingTrend" aria-live="polite"></p>
+              <h3>Weekly Spending</h3>
+              <div id="weeklyBars" class="weekly-bars" role="img" aria-label="Weekly spending for the current month"></div>
+            </article>
+
+            <article class="history-panel categories-panel">
+              <h2>Top Spending Categories</h2>
+              <div id="topCategories" class="top-categories"></div>
+            </article>
+            <p class="history-note">Spend wisely, eat happily!</p>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+    <div class="logout-modal hidden" id="logoutModal" aria-hidden="true">
+      <section class="logout-dialog" role="dialog" aria-modal="true" aria-labelledby="logoutTitle" aria-describedby="logoutMessage">
+        <h2 id="logoutTitle">Log Out</h2>
+        <p id="logoutMessage">Are you sure you want to log out?</p>
+        <div class="logout-actions">
+          <button type="button" class="logout-confirm" id="confirmLogout">I'm Sure</button>
+          <button type="button" class="logout-cancel" id="cancelLogout">Cancel</button>
+        </div>
+      </section>
+    </div>
+    <script src="js/finance.js"></script>
+    <script src="js/history.js"></script>
+  </body>
+</html>

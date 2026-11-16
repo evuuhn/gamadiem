@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamadiem — Financial & Lifestyle Optimizer UGM</title>
+    <link rel="stylesheet" href="css/sign-in_sign-up.css">
+</head>
+
+<body>
+
+
+    <div id="authView" class="auth-view">
+        <header class="topbar">
+            <a class="brand" href="#" aria-label="Gamadiem">
+                <span class="brand-mark"><img src="assets/gamadiem-logo.svg" alt=""></span>
+                <span class="brand-name">Gamadiem</span>
+            </a>
+            <nav class="auth-nav" aria-label="Akun">
+                <button id="tabBtnSignIn" class="auth-nav-button active" type="button"
+                    onclick="switchAuthMode('signin')">SIGN IN</button>
+                <button id="tabBtnSignUp" class="auth-nav-button" type="button" onclick="switchAuthMode('signup')">SIGN
+                    UP</button>
+            </nav>
+        </header>
+
+        <main class="auth-stage">
+            <img class="decor decor-bill" src="assets/gamadiem-logo.svg" alt="" aria-hidden="true">
+            <img class="decor decor-left-stars" src="assets/star-cluster.png" alt="" aria-hidden="true">
+            <img class="decor decor-right-stars" src="assets/star-cluster.png" alt="" aria-hidden="true">
+            <img class="decor decor-left-cash" src="assets/cash-cluster.png" alt="" aria-hidden="true">
+            <img class="decor decor-right-cash" src="assets/cash-cluster.png" alt="" aria-hidden="true">
+            <img class="decor decor-bottom-cash" src="assets/cash-row.png" alt="" aria-hidden="true">
+            <img class="decor decor-piggy" src="assets/piggy-bank.png" alt="" aria-hidden="true">
+            <img class="decor decor-star" src="assets/pixel-star.png" alt="" aria-hidden="true">
+            <!-- Placeholder: replace with the Figma export at assets/sunglasses.png when available. -->
+            <div class="decor decor-sunglasses" aria-hidden="true"><span></span></div>
+
+            <section class="auth-card" aria-labelledby="authTitleText">
+                <div class="auth-heading">
+                    <p class="welcome-copy">Welcome Back!</p>
+                    <h1 id="authTitleText">Login</h1>
+                </div>
+                <div class="auth-body">
+                    <div id="authAlertBox" class="retro-alert hidden" role="status" aria-live="polite"></div>
+
+                    <form id="signInForm">
+                        <div class="form-group">
+                            <label for="loginEmail">USERNAME OR EMAIL:</label>
+                            <div class="input-shell">
+                                <input type="text" id="loginEmail" autocomplete="username" required>
+                                <span class="field-icon user-icon" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">PASSWORD:</label>
+                            <div class="input-shell password-shell">
+                                <input type="password" id="loginPassword" autocomplete="current-password" required>
+                                <button type="button" class="field-icon icon-button eye-icon"
+                                    aria-label="Tampilkan password"
+                                    onclick="togglePassword('loginPassword', this)"></button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary auth-submit">SIGN IN</button>
+                    </form>
+
+                    <form id="signUpForm" class="hidden signup-form">
+                        <div class="form-group">
+                            <label for="regName">NAMA PANGGILAN</label>
+                            <input type="text" id="regName" autocomplete="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regEmail">USERNAME OR EMAIL</label>
+                            <input type="text" id="regEmail" autocomplete="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regPassword">PASSWORD</label>
+                            <input type="password" id="regPassword" minlength="4" autocomplete="new-password" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label for="regAllowance">UANG SAKU (RP)</label>
+                                <input type="text" id="regAllowance" inputmode="numeric" placeholder="2.500.000"
+                                    oninput="formatRupiah(this)" required>
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="regSavings">TARGET NABUNG (RP)</label>
+                                <input type="text" id="regSavings" inputmode="numeric" placeholder="300.000"
+                                    oninput="formatRupiah(this)" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="regDays">SIKLUS DANA (HARI)</label>
+                            <input type="number" id="regDays" value="30" min="1" max="60" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary auth-submit">CREATE ACCOUNT</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- =========================================================
+         VIEW 2: MAIN APP LAYOUT (SIDEBAR + MAIN CONTENT)
+         ========================================================= -->
+    <div id="appLayout" class="app-container hidden">
+
+        <!-- SIDEBAR NAVIGATION (#331E38) -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <h2>Gamadiem</h2>
+                <span class="badge-ugm">UGM Edition</span>
+            </div>
+
+            <div class="user-profile-summary">
+                <div class="avatar-circle" id="userAvatar">E</div>
+                <div class="user-info">
+                    <span class="user-name" id="displayUserName">Pengguna</span>
+                    <span class="user-status">Mahasiswa UGM</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <button class="nav-btn active" onclick="switchTab('dashboardTab', this)">
+                    <span class="icon">📊</span> Dashboard & Tracker
+                </button>
+                <button class="nav-btn" onclick="switchTab('historyTab', this)">
+                    <span class="icon">📜</span> Histori Pembelian
+                </button>
+                <button class="nav-btn" onclick="switchTab('recommendationTab', this)">
+                    <span class="icon">📍</span> Rekomendasi Kuliner
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button onclick="handleLogout()" class="btn-logout">
+                    🔒 Keluar / Reset Data
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA (#F0F3BD Background) -->
+        <main class="main-content">
+
+            <!-- TAB 1: DASHBOARD & INPUT SPENDING -->
+            <section id="dashboardTab" class="tab-content active">
+                <header class="content-header">
+                    <div>
+                        <h1>Atur & Kelola Alokasi Harian</h1>
+                        <p>Pantau sisa dana bersih dan simulasikan pengeluaran harianmu.</p>
+                    </div>
+                    <div class="cycle-pill">
+                        <span>Sisa Periode:</span>
+                        <strong id="displayDaysLeft">30 Hari</strong>
+                    </div>
+                </header>
+
+                <!-- METRICS GRID -->
+                <div class="metrics-grid">
+                    <div class="metric-card card-teal">
+                        <h3>Dana Bersih Siap Pakai</h3>
+                        <div class="metric-value" id="netBalanceDisplay">Rp 0</div>
+                        <p class="metric-sub">Sudah dipotong target tabungan.</p>
+                    </div>
+
+                    <div class="metric-card card-amber">
+                        <h3>Virtual Piggy Bank</h3>
+                        <div class="metric-value" id="piggyBankDisplay">Rp 0</div>
+                        <p class="metric-sub">Terlokasi aman untuk tabungan.</p>
+                    </div>
+
+                    <div class="metric-card card-purple">
+                        <h3>Batas Aman Harian</h3>
+                        <div class="metric-value" id="dailyLimitDisplay">Rp 0 / hari</div>
+                        <p class="metric-sub">Batas belanja agar tabungan aman.</p>
+                    </div>
+                </div>
+
+                <!-- SPENDING INPUT FORM (WHAT DO YOU WANT TO BUY?) -->
+                <div class="card form-card">
+                    <h2>What do you want to buy today? 🛒</h2>
+                    <p class="card-subtitle">Input pengeluaranmu hari ini untuk menguji kelayakan anggaran.</p>
+
+                    <form id="expenseForm">
+                        <div class="form-row">
+                            <div class="form-group flex-2">
+                                <label for="expenseTitle">Nama Barang / Pengeluaran</label>
+                                <input type="text" id="expenseTitle" placeholder="Contoh: Es Kopi Susu / Bayar Print"
+                                    required>
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="expenseAmount">Biaya (Rp)</label>
+                                <input type="text" id="expenseAmount" placeholder="18.000" onkeyup="formatRupiah(this)"
+                                    required>
+                            </div>
+                        </div>
+
+                        <!-- CATEGORY SELECTION -->
+                        <div class="form-group">
+                            <label>Pilih Kategori</label>
+                            <div class="category-grid">
+                                <label class="category-option">
+                                    <input type="radio" name="expenseCategory" value="Food" checked>
+                                    <span class="cat-box">🍔 Makanan</span>
+                                </label>
+                                <label class="category-option">
+                                    <input type="radio" name="expenseCategory" value="Transport">
+                                    <span class="cat-box">🚗 Transport</span>
+                                </label>
+                                <label class="category-option">
+                                    <input type="radio" name="expenseCategory" value="Keperluan Rumah">
+                                    <span class="cat-box">🏠 Keperluan Rumah</span>
+                                </label>
+                                <label class="category-option">
+                                    <input type="radio" name="expenseCategory" value="Tugas">
+                                    <span class="cat-box">📚 Tugas / Akademik</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="expenseNote">Catatan Tambahan (Opsional)</label>
+                            <input type="text" id="expenseNote"
+                                placeholder="Catatan singkat (misal: beli di kantin MIPA)">
+                        </div>
+
+                        <button type="submit" class="btn btn-teal btn-full">
+                            Simpan & Kurangi Anggaran Harian
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+
+            <!-- TAB 2: HISTORI PEMBELIAN -->
+            <section id="historyTab" class="tab-content">
+                <header class="content-header">
+                    <div>
+                        <h1>Histori Transaksi Pembelian</h1>
+                        <p>Catatan lengkap semua pengeluaran yang pernah kamu input.</p>
+                    </div>
+                </header>
+
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="history-table">
+                            <thead>
+                                <tr>
+                                    <th>Tanggal / Waktu</th>
+                                    <th>Item & Catatan</th>
+                                    <th>Kategori</th>
+                                    <th>Nominal</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historyTableBody">
+                                <!-- Data transaksi dimasukkan lewat script.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- TAB 3: REKOMENDASI KULINER & GMAPS API -->
+            <section id="recommendationTab" class="tab-content">
+                <header class="content-header">
+                    <div>
+                        <h1>Rekomendasi Kuliner Hemat UGM</h1>
+                        <p>Cari rekomendasi tempat makan sesuai target harga dan anggaranmu.</p>
+                    </div>
+                </header>
+
+                <div class="card form-card">
+                    <div class="form-row">
+                        <div class="form-group flex-2">
+                            <label for="searchFoodName">Mau makan/minum apa?</label>
+                            <input type="text" id="searchFoodName"
+                                placeholder="Contoh: Nasi Rames / Es Teh / Ayam Geprek">
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="searchMaxPrice">Batas Maksimal Harga (Rp)</label>
+                            <input type="text" id="searchMaxPrice" placeholder="15.000" onkeyup="formatRupiah(this)">
+                        </div>
+                    </div>
+                    <button onclick="handleFoodSearch()" class="btn btn-amber btn-full">
+                        🔍 Cari Tempat Makan & Tampilkan Peta
+                    </button>
+                </div>
+
+                <!-- 2-COLUMN SPLIT: RECS LIST & MAP EMBED -->
+                <div class="recommendation-split">
+                    <div class="recs-list" id="recommendationsList">
+                        <!-- Kartu rekomendasi di-render via script.js -->
+                    </div>
+
+                    <div class="map-wrapper">
+                        <div class="map-header">Peta Lokasi Interaktif UGM</div>
+                        <iframe id="mapFrame" title="Google Maps Location"
+                            src="https://maps.google.com/maps?q=Kantin+FMIPA+UGM&t=&z=15&ie=UTF8&iwloc=&output=embed">
+                        </iframe>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- PENGHUBUNG JAVASCRIPT UTAMA -->
+    <script src="js/finance.js"></script>
+    <script src="js/sign-in_sign-up.js"></script>
+</body>
+
+</html>
