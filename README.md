@@ -87,7 +87,7 @@ Because GAMADIEM is built with pure static web technologies (HTML/CSS/JS), no pa
 
 ## 🌐 Deployment Links
 
-- **Live Website (GitHub Pages):** `https://github.com/evuuhn/gamadiem`
+- **Live Website (GitHub Pages):** `https://evuuhn.github.io/gamadiem/`
 - **Figma Design File:** [GAMADIEM Web App Figma](https://www.figma.com/design/JBwmuhnLjpxPc8SfLFOqv4/Gamadiem-WEBAPPA?node-id=3-346&t=D7hCTkeSE7SCh87H-1)
 
 ---
